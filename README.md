@@ -51,7 +51,7 @@ This helps catch bugs early and keeps the code stable.
 What is CD?
 
 
-
+![CI CD Intro](https://github.com/SURUJ404/Jenkins-Devops-/raw/main/images/ci-cd-intro.jpg) 
 
 CD (Continuous Delivery / Continuous Deployment) is the next step after CI.
 
