@@ -5,6 +5,10 @@ Jenkins is an open-source automation server used to build, test, and deploy soft
 Jenkins is written in Java, which makes it platform-independent and able to run on Windows, Linux, and macOS.
 
 
+![Jenkins Intro](images/Intro.jpg)
+
+
+
 Is Jenkins Open Source?
 
 
