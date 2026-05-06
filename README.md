@@ -65,3 +65,5 @@ Pull code from repository
 Build the application
 Run tests
 Deploy the application
+
+![SDLC](https://github.com/SURUJ404/Jenkins-Devops-/raw/main/images/sdlc.jpg) 
