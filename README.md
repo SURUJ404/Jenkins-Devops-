@@ -1,3 +1,5 @@
+[![Watch Video](https://img.youtube.com/vi/6jEOLMv9YpE/0.jpg)](https://www.youtube.com/watch?v=6jEOLMv9YpE) 
+
 What is Jenkins?
 
 Jenkins is an open-source automation server used to build, test, and deploy software. It helps developers automate repetitive tasks and manage the software development lifecycle efficiently.
