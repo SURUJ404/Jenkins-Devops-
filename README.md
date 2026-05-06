@@ -17,6 +17,8 @@ Is Jenkins Open Source?
 Yes ✅
 Jenkins is completely open-source and maintained by the community. Anyone can use, modify, and extend it freely.
 
+![What is Jenkins](https://github.com/SURUJ404/Jenkins-Devops-/raw/main/images/what.jpg) 
+
 Why Jenkins?
 
 
