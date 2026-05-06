@@ -32,6 +32,8 @@ Jenkins is widely used because:
 🌍 Works on multiple platforms
 🚀 Enables faster and more reliable releases
 
+![Why Jenkins](https://github.com/SURUJ404/Jenkins-Devops-/raw/main/images/why.jpg) 
+
 What is CI?
 
 
