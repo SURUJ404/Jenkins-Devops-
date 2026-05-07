@@ -22,7 +22,7 @@ Example output:
 
 jdk-17.0.19.10-hotspot
 
-Add Java to PATH (Temporary)
+3. Add Java to PATH (Temporary)
 
 Run: 
 
@@ -40,7 +40,7 @@ openjdk version "17.x.x"
 javac 17.x.x
 
 
-Add Java to PATH Permanently
+5. Add Java to PATH Permanently
 
 Run the following command in PowerShell (Administrator): 
 
