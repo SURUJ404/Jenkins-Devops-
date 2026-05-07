@@ -1,3 +1,5 @@
+[![Watch Video](https://img.youtube.com/vi/6jEOLMv9YpE/0.jpg)](https://www.youtube.com/watch?v=6jEOLMv9YpE) 
+
 What is Jenkins?
 
 Jenkins is an open-source automation server used to build, test, and deploy software. It helps developers automate repetitive tasks and manage the software development lifecycle efficiently.
@@ -17,6 +19,8 @@ Is Jenkins Open Source?
 Yes ✅
 Jenkins is completely open-source and maintained by the community. Anyone can use, modify, and extend it freely.
 
+![What is Jenkins](https://github.com/SURUJ404/Jenkins-Devops-/raw/main/images/what.jpg) 
+
 Why Jenkins?
 
 
@@ -29,6 +33,8 @@ Jenkins is widely used because:
 🔌 Supports thousands of plugins
 🌍 Works on multiple platforms
 🚀 Enables faster and more reliable releases
+
+![Why Jenkins](https://github.com/SURUJ404/Jenkins-Devops-/raw/main/images/why.jpg) 
 
 What is CI?
 
@@ -47,7 +53,7 @@ This helps catch bugs early and keeps the code stable.
 What is CD?
 
 
-
+![CI CD Intro](https://github.com/SURUJ404/Jenkins-Devops-/raw/main/images/ci-cd-intro.jpg) 
 
 CD (Continuous Delivery / Continuous Deployment) is the next step after CI.
 
@@ -61,3 +67,5 @@ Pull code from repository
 Build the application
 Run tests
 Deploy the application
+
+![SDLC](https://github.com/SURUJ404/Jenkins-Devops-/raw/main/images/sdlc.jpg) 
