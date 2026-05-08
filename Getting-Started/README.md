@@ -187,3 +187,6 @@ Check installed Jenkins version:
 ```bash
 jenkins --version
 ```
+
+
+> **Security Note:** By default Jenkins runs on port `8080`. You can test the Jenkins dashboard locally using `http://localhost:8080`, but if you are deploying Jenkins on a cloud VM or remote server, you must configure your firewall/security rules (AWS Security Groups, UFW, Azure NSG, GCP Firewall, etc.) to allow inbound access to port `8080`.
