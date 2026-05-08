@@ -191,5 +191,5 @@ jenkins --version
 
 
 
-> **Security Note:** By default Jenkins runs on port `8080`. You can test the Jenkins dashboard locally using `http://localhost:8080`, but if you are deploying Jenkins on a cloud VM or remote server, you must create a new inbound rule under your instance security settings/firewall so that port `8080` is accessible. Configure the rule in AWS Security Groups, UFW, Azure NSG, GCP Firewall, or your hosting provider’s firewall settings to allow inbound TCP traffic on port `8080`. 
+> **Security Note:** By default Jenkins runs on port `8080`. You can test the Jenkins dashboard locally using `http://localhost:8080`, but if you are deploying Jenkins on a cloud VM or remote server, you must create a new inbound rule under your instance security settings/firewall so that port `8080` is accessible. Configure the rule in AWS Security Groups, UFW, Azure NSG, GCP Firewall, or your hosting provider’s firewall settings to allow inbound TCP traffic on port `8080`. If your public IP with port `8080` is still not accessible, set up a custom inbound TCP rule manually and verify that the Jenkins service is actively listening on the configured port.  (under security) 
 
