@@ -2,90 +2,188 @@ Jenkins Installation and Overview Guide
 
 This guide provides an overview of Jenkins, its features, and step-by-step instructions to install Jenkins on a Debian-based system. The content is designed to help users understand Jenkins and set it up effectively. 
 
-## Install Java JDK 17 on Windows
+# Jenkins Installation on Ubuntu/Debian
 
-### 1. Install JDK 17
+## Install Java (Required for Jenkins)
 
-Run the following command in PowerShell (Administrator):
+Jenkins requires Java to run.  
+This guide uses OpenJDK 21.
 
-```powershell
-winget install EclipseAdoptium.Temurin.17.JDK
+Update package repositories and install Java:
 
+```bash
+sudo apt update
+sudo apt install fontconfig openjdk-21-jre -y
+```
 
-2. Verify Installation Directory
+Verify Java installation:
 
-Check the installed JDK folder: 
-
-dir "C:\Program Files\Eclipse Adoptium" 
-
-Example output: 
-
-jdk-17.0.19.10-hotspot
-
-3. Add Java to PATH (Temporary)
-
-Run: 
-
-$env:Path += ";C:\Program Files\Eclipse Adoptium\jdk-17.0.19.10-hotspot\bin" 
-
-4. Verify Java Installation
-
-Check Java version:
-
+```bash
 java -version
-javac -version
+```
 
+Expected output:
 
-openjdk version "17.x.x"
-javac 17.x.x
+```text
+openjdk 21.0.8 2025-07-15
+OpenJDK Runtime Environment (build 21.0.8+9-Debian-1)
+OpenJDK 64-Bit Server VM (build 21.0.8+9-Debian-1, mixed mode, sharing)
+```
 
+> Install Java before Jenkins to avoid:
+>
+> ```text
+> jenkins: failed to find a valid Java installation
+> ```
 
-5. Add Java to PATH Permanently
+---
 
-Run the following command in PowerShell (Administrator): 
+# Install Jenkins (LTS Release)
 
-[System.Environment]::SetEnvironmentVariable(
-"Path",
-$env:Path + ";C:\Program Files\Eclipse Adoptium\jdk-17.0.19.10-hotspot\bin",
-[System.EnvironmentVariableTarget]::Machine
-)
+Add Jenkins repository key:
 
-6. # Add the Jenkins repository key
+```bash
 sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
-  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+https://pkg.jenkins.io/debian-stable/jenkins.io-2026.key
+```
 
-# Add the Jenkins repository to the system
+Add Jenkins repository:
+
+```bash
 echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc] \
-  https://pkg.jenkins.io/debian-stable binary/" | sudo tee \
-  /etc/apt/sources.list.d/jenkins.list > /dev/null
+https://pkg.jenkins.io/debian-stable binary/" | \
+sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+```
 
-# Update the package index and install Jenkins
-sudo apt-get update
-sudo apt-get install jenkins
+Update repositories:
 
-6. Restart PowerShell
+```bash
+sudo apt update
+```
 
-Close and reopen PowerShell, then verify again: 
+Install Jenkins:
 
-java -version
-javac -version
+```bash
+sudo apt install jenkins -y
+```
 
+---
 
-## Start and Enable Jenkins
+# Start and Enable Jenkins
 
-Once installed, Jenkins runs as a systemd service. Start and enable the Jenkins service to ensure it runs automatically on system boot:
+Start Jenkins service:
 
 ```bash
 sudo systemctl start jenkins
+```
+
+Enable Jenkins on system boot:
+
+```bash
 sudo systemctl enable jenkins
 ```
 
-Verify that Jenkins is running:
+Verify Jenkins status:
 
 ```bash
 sudo systemctl status jenkins
 ```
 
-The output should indicate that the Jenkins service is active (`running`).
-#LInux 
+If running successfully, the output should show:
 
+```text
+active (running)
+```
+
+---
+
+# Access Jenkins
+
+Open your browser and visit:
+
+```text
+http://localhost:8080
+```
+
+or
+
+```text
+http://YOUR_SERVER_IP:8080
+```
+
+---
+
+# Jenkins Service Information
+
+The Jenkins package automatically:
+
+- Creates a `jenkins` system user
+- Configures Jenkins as a systemd service
+- Stores logs in `journalctl`
+- Uses port `8080` by default
+- Starts Jenkins automatically on boot
+
+View Jenkins logs:
+
+```bash
+journalctl -u jenkins.service
+```
+
+---
+
+# Change Jenkins Port (Optional)
+
+If port `8080` is already in use:
+
+Edit Jenkins service configuration:
+
+```bash
+sudo systemctl edit jenkins
+```
+
+Add:
+
+```ini
+[Service]
+Environment="JENKINS_PORT=8081"
+```
+
+Reload systemd:
+
+```bash
+sudo systemctl daemon-reload
+```
+
+Restart Jenkins:
+
+```bash
+sudo systemctl restart jenkins
+```
+
+---
+
+# Useful Commands
+
+Restart Jenkins:
+
+```bash
+sudo systemctl restart jenkins
+```
+
+Stop Jenkins:
+
+```bash
+sudo systemctl stop jenkins
+```
+
+Check Jenkins logs:
+
+```bash
+journalctl -u jenkins.service -n 50 --no-pager
+```
+
+Check installed Jenkins version:
+
+```bash
+jenkins --version
+```
