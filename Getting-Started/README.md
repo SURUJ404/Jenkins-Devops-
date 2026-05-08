@@ -50,6 +50,18 @@ $env:Path + ";C:\Program Files\Eclipse Adoptium\jdk-17.0.19.10-hotspot\bin",
 [System.EnvironmentVariableTarget]::Machine
 )
 
+6. # Add the Jenkins repository key
+sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+
+# Add the Jenkins repository to the system
+echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/" | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+# Update the package index and install Jenkins
+sudo apt-get update
+sudo apt-get install jenkins
 
 6. Restart PowerShell
 
@@ -57,3 +69,23 @@ Close and reopen PowerShell, then verify again:
 
 java -version
 javac -version
+
+
+## Start and Enable Jenkins
+
+Once installed, Jenkins runs as a systemd service. Start and enable the Jenkins service to ensure it runs automatically on system boot:
+
+```bash
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
+```
+
+Verify that Jenkins is running:
+
+```bash
+sudo systemctl status jenkins
+```
+
+The output should indicate that the Jenkins service is active (`running`).
+#LInux 
+
