@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+    stages {
+        stage('Hello') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'DockerHub',
+                    passwordVariable: 'DockerPass',
+                    usernameVariable: 'DockerUser'
+                )]) {
+                    echo "Hello World"
+                    echo "Docker username: ${DockerUser}"
+                    // sh "docker login -u ${DockerUser} -p ${DockerPass}"
+                }
+            }
+        }
+    }
+}

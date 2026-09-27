@@ -1,0 +1,57 @@
+pipeline {
+    agent { label 'worker-node' }
+    stages {
+        stage('Build') {
+            steps {
+                git branch: 'main', changelog: false, poll: false,
+                    url: 'https://github.com/theshubhamgour/jenkins-tutorial.git'
+                dir('3-java-jenkins-docker-app') {
+                    sh "mvn clean package"
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                dir('3-java-jenkins-docker-app') {
+                    sh "mvn test"
+                }
+            }
+        }
+        stage('Compile') {
+            steps {
+                dir('3-java-jenkins-docker-app') {
+                    sh "mvn compile"
+                }
+            }
+        }
+        stage('Docker Build') {
+            steps {
+                dir('3-java-jenkins-docker-app') {
+                    sh "docker build -t java-app ."
+                }
+            }
+        }
+        stage('Docker Run') {
+            steps {
+                dir('3-java-jenkins-docker-app') {
+                    sh "docker run java-app"
+                }
+            }
+        }
+        stage('Docker Push') {
+            steps {
+                dir('3-java-jenkins-docker-app') {
+                    withCredentials([usernamePassword(
+                        credentialsId: 'theshubhamgour',
+                        passwordVariable: 'DockerPass',
+                        usernameVariable: 'DockerUser'
+                    )]) {
+                        sh "docker login -u ${DockerUser} -p ${DockerPass}"
+                        sh "docker tag java-app theshubhamgour/java-app:latest"
+                        sh "docker push theshubhamgour/java-app:latest"
+                    }
+                }
+            }
+        }
+    }
+}
