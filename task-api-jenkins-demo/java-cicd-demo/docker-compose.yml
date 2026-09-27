@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  task-api:
+    build: .
+    image: task-api:latest
+    container_name: task-api
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
